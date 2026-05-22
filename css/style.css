@@ -1,0 +1,796 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+   ========================================================================== */
+:root {
+    --negro-absoluto: #000000;
+    --negro-profundo: #0a0a0a;
+    --negro-tarjeta: #0d0d0d;
+    --rojo-sangre: #ff0000;
+    --rojo-oscuro: #800000;
+    --blanco-puro: #ffffff;
+    --gris-texto: #aaaaaa;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--negro-absoluto);
+    color: var(--blanco-puro);
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ==========================================================================
+   2. EFECTOS ESPECIALES DE DISEÑO Y NEÓN (INDEX GENERAL)
+   ========================================================================== */
+.neon-rojo-puro {
+    color: var(--rojo-sangre);
+    text-shadow: 0 0 8px var(--rojo-sangre), 0 0 20px var(--rojo-sangre), 0 0 40px var(--rojo-oscuro);
+    font-family: 'Permanent Marker', cursive;
+}
+
+.neon-texto-rojo {
+    color: var(--blanco-puro);
+    text-shadow: 0 0 10px var(--rojo-sangre), 0 0 25px var(--rojo-oscuro);
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 3px;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+@keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes radar-scan {
+    0% { top: 0%; opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN (HEADER)
+   ========================================================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-bottom: 2px solid var(--rojo-oscuro);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.header-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo img {
+    height: 45px;
+    display: block;
+    filter: drop-shadow(0 0 5px var(--rojo-sangre));
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-enlace {
+    color: var(--blanco-puro);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-enlace:hover { color: var(--rojo-sangre); }
+
+.btn-rojo-nav {
+    background-color: var(--rojo-sangre);
+    color: var(--blanco-puro);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    padding: 8px 20px;
+    border-radius: 3px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px var(--rojo-sangre);
+    transition: background 0.3s, transform 0.2s;
+}
+.btn-rojo-nav:hover { background-color: var(--rojo-oscuro); transform: scale(1.05); }
+
+/* ==========================================================================
+   4. SECCIÓN HERO (VIDEO DE FONDO REPARADO COMPLETAMENTE)
+   ========================================================================== */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.video-contenedor { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+.video-bg { width: 100%; height: 100%; object-fit: cover; filter: brightness(1.3) contrast(1.2); }
+
+.overlay-sangre {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(128, 0, 0, 0.1) 60%, var(--negro-absoluto) 100%);
+    z-index: -1;
+}
+
+.hero-content { text-align: center; z-index: 1; }
+.titulo-principal { font-size: 4.5rem; margin-bottom: 10px; font-family: 'Oswald', sans-serif; letter-spacing: 4px; margin-top: 0; }
+.subtitulo { font-size: 1.4rem; letter-spacing: 6px; margin-bottom: 40px; color: var(--gris-texto); }
+
+.btn-hero {
+    display: inline-block;
+    padding: 15px 40px;
+    color: var(--blanco-puro);
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    border: 2px solid var(--rojo-sangre);
+    box-shadow: 0 0 15px var(--rojo-sangre);
+    background: rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.btn-hero:hover { transform: scale(1.1); background: var(--rojo-sangre); }
+
+/* ==========================================================================
+   5. SECCIÓN HISTORIA
+   ========================================================================== */
+.seccion-historia { background-color: var(--negro-absoluto); }
+.grid-historia { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.texto-historia p { font-size: 1.15rem; line-height: 1.8; color: var(--gris-texto); margin-bottom: 30px; }
+
+.btn-borde {
+    display: inline-block;
+    padding: 12px 30px;
+    color: var(--blanco-puro);
+    text-decoration: none;
+    border: 1px solid var(--gris-texto);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.btn-borde:hover { border-color: var(--rojo-sangre); color: var(--rojo-sangre); box-shadow: 0 0 10px var(--rojo-sangre); }
+
+.imagen-exagerada {
+    overflow: hidden;
+    border: 3px solid var(--rojo-sangre);
+    box-shadow: 0 0 20px var(--rojo-sangre);
+    animation: pulse-soft 4s infinite ease-in-out;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1.2);
+}
+.imagen-exagerada:hover { transform: scale(1.12) rotate(-4deg); box-shadow: 0 0 40px var(--rojo-sangre), 0 0 70px var(--rojo-oscuro); }
+.imagen-exagerada img { width: 100%; display: block; }
+
+/* ==========================================================================
+   6. SECCIÓN PERSONAJES (MISMO TAMANO ASPEC-RATIO OBLIGATORIO)
+   ========================================================================== */
+.seccion-personajes { background-color: var(--negro-profundo); }
+.grid-personajes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+
+.card-animada {
+    background: var(--negro-tarjeta);
+    border: 2px solid #222;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+}
+.card-animada:hover {
+    transform: translateY(-20px) scale(1.08) rotate(3deg);
+    border-color: var(--rojo-sangre);
+    box-shadow: 0 15px 35px rgba(255, 0, 0, 0.6);
+}
+
+.wrapper-img {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 4 / 5; 
+}
+
+.wrapper-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    filter: grayscale(60%) brightness(0.8);
+}
+
+.card-animada:hover .wrapper-img img {
+    transform: scale(1.25);
+    filter: grayscale(0%) brightness(1.1) contrast(1.2);
+}
+
+.radar-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--rojo-sangre);
+    box-shadow: 0 0 10px var(--rojo-sangre);
+    z-index: 2;
+    pointer-events: none;
+    animation: radar-scan 2.5s linear infinite;
+}
+
+.card-info { padding: 20px; text-align: center; }
+.card-info h3 { margin: 0 0 5px 0; font-family: 'Oswald', sans-serif; font-size: 1.4rem; letter-spacing: 1px; }
+.rol-tag { margin: 0; font-size: 0.85rem; color: var(--rojo-sangre); font-weight: bold; }
+.card-link { text-decoration: none; color: inherit; display: block; }
+
+/* ==========================================================================
+   7. SECCIÓN COMENTARIOS / REPORTES
+   ========================================================================== */
+.seccion-comentarios { background-color: var(--negro-absoluto); }
+.contenedor-formulario {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background: var(--negro-profundo);
+    border: 2px solid var(--rojo-sangre);
+    box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.15), 0 0 20px rgba(255, 0, 0, 0.25);
+}
+.sub-formulario { text-align: center; color: var(--gris-texto); margin-bottom: 30px; font-size: 0.95rem; }
+.grupo-input { margin-bottom: 25px; }
+.grupo-input label { display: block; margin-bottom: 8px; color: var(--rojo-sangre); font-weight: bold; font-size: 0.85rem; letter-spacing: 2px; }
+.grupo-input input, .grupo-input textarea { width: 100%; padding: 14px; background: #050505; border: 1px solid #333; color: var(--blanco-puro); font-family: inherit; box-sizing: border-box; transition: border-color 0.3s, box-shadow 0.3s; }
+.grupo-input input:focus, .grupo-input textarea:focus { outline: none; border-color: var(--rojo-sangre); box-shadow: 0 0 12px rgba(255, 0, 0, 0.6); }
+
+.btn-enviar {
+    width: 100%;
+    padding: 16px;
+    background: var(--rojo-sangre);
+    color: var(--blanco-puro);
+    border: none;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    box-shadow: 0 0 12px var(--rojo-sangre);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+.btn-enviar:hover { background: var(--rojo-oscuro); box-shadow: 0 0 30px var(--rojo-sangre); transform: scale(1.02); }
+
+/* ==========================================================================
+   8. SISTEMA DE ESTRELLAS ROJO NEÓN Y TERMINAL TÁCTICA
+   ========================================================================== */
+.estrellas-rating { display: flex; gap: 10px; margin-top: 5px; }
+.estrella { font-size: 2.5rem; color: #222222 !important; cursor: pointer; transition: color 0.15s ease, text-shadow 0.15s ease, transform 0.1s ease; user-select: none; }
+.estrella:hover { transform: scale(1.2); }
+
+.estrella.active,
+.estrellas-rating:hover .estrella:hover,
+.estrellas-rating:hover .estrella:hover ~ .estrella {
+    color: var(--rojo-sangre) !important;
+    text-shadow: 0 0 12px var(--rojo-sangre), 0 0 25px var(--rojo-oscuro) !important;
+}
+
+.terminal-comentarios { margin-top: 40px; background: #040404; border: 1px dashed var(--rojo-oscuro); border-radius: 4px; font-family: monospace; overflow: hidden; }
+.terminal-header { background: #110000; color: var(--rojo-sangre); padding: 10px; font-size: 0.85rem; font-weight: bold; border-bottom: 1px solid var(--rojo-oscuro); letter-spacing: 1px; }
+.lista-comentarios { padding: 20px; max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+.comentario-item { background: #080808; border-left: 3px solid var(--rojo-sangre); padding: 12px 15px; border-radius: 0 4px 4px 0; animation: entrarComentario 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; transform: translateY(20px); }
+.item-precargado { opacity: 1; transform: translateY(0); }
+.comentario-meta { margin: 0 0 5px 0; font-size: 0.85rem; color: var(--gris-texto); }
+.comentario-cuerpo { margin: 0; font-size: 0.95rem; color: #fff; line-height: 1.4; }
+
+@keyframes entrarComentario { to { opacity: 1; transform: translateY(0); } }
+
+/* ==========================================================================
+   9. SECCIÓN FINAL: ACCESO A ROBLOX
+   ========================================================================== */
+.seccion-juego { background-color: var(--negro-profundo); border-top: 2px solid var(--rojo-oscuro); padding: 100px 0; }
+.roblox-badge { display: inline-block; background: rgba(255, 0, 0, 0.1); border: 1px solid var(--rojo-sangre); color: var(--rojo-sangre); padding: 6px 16px; font-size: 0.8rem; font-weight: bold; letter-spacing: 2px; margin-bottom: 15px; }
+.sub-juego { color: var(--gris-texto); margin-bottom: 40px; font-size: 1.1rem; }
+.btn-roblox { display: inline-block; background: var(--rojo-sangre); color: var(--blanco-puro); border: 2px solid var(--rojo-sangre); padding: 20px 50px; font-family: 'Oswald', sans-serif; font-size: 1.4rem; font-weight: bold; text-decoration: none; letter-spacing: 2px; box-shadow: 0 0 20px var(--rojo-sangre); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.btn-roblox:hover { background: var(--negro-absoluto); color: var(--rojo-sangre); box-shadow: 0 0 40px var(--rojo-sangre); transform: translateY(-8px) scale(1.05); }
+
+/* ==========================================================================
+   10. PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+.footer { background-color: var(--negro-absoluto); border-top: 1px solid #111; padding: 30px 20px; margin-top: -2px; }
+.footer-contenido { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; color: #555; font-size: 0.9rem; }
+.footer-legal { margin: 0; }
+.footer-estado { margin: 0; font-weight: bold; letter-spacing: 1px; }
+
+@keyframes pulse { 0%, 100% { color: var(--rojo-sangre); opacity: 1; } 50% { color: #400000; opacity: 0.5; } }
+.parpadeo-alerta { animation: pulse 1.5s infinite; }
+
+/* ==========================================================================
+   11. SECCIÓN DE EXPEDIENTES DE PERSONAJES (UNIFICADOS TILO CLAIRE)
+   ========================================================================== */
+.expediente-body {
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.expediente-card {
+    display: flex;
+    background-color: #040404;
+    border: 2px solid #151515;
+    max-width: 850px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.umbrella-bg-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    background-image: url('../imagenes/Umbrella_Corporation_Symbol.webp');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.03;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.animacion-entrada-perfil {
+    animation: entradaTarjeta 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+@keyframes entradaTarjeta {
+    0% { transform: scale(0.7) rotateY(-15deg); opacity: 0; filter: blur(10px); }
+    100% { transform: scale(1) rotateY(0deg); opacity: 1; filter: blur(0); }
+}
+
+.tema-claire .expediente-card { border-color: #ff0000; box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); }
+.tema-leon .expediente-card { border-color: #0055ff; box-shadow: 0 0 30px rgba(0, 85, 255, 0.3); }
+.tema-g .expediente-card { border-color: #ff5500; box-shadow: 0 0 30px rgba(255, 85, 0, 0.3); }
+
+.foto-perfil {
+    width: 40%;
+    position: relative;
+    overflow: hidden;
+    background-color: #000;
+}
+.foto-perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: contrast(1.2) brightness(0.75) grayscale(10%);
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+.expediente-card:hover .foto-perfil img {
+    filter: contrast(1.3) brightness(0.9) grayscale(0%);
+    transform: scale(1.03);
+}
+
+.laser-scanner-line { position: absolute; left: 0; width: 100%; height: 3px; z-index: 5; pointer-events: none; animation: laserMovimiento 2s linear infinite; }
+@keyframes laserMovimiento { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+.scanner-rojo { background: #ff0000; box-shadow: 0 0 12px #ff0000; }
+.scanner-azul { background: #0055ff; box-shadow: 0 0 12px #0055ff; }
+.scanner-naranja { background: #ff5500; box-shadow: 0 0 12px #ff5500; }
+
+.datos-tecnicos {
+    width: 60%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.letrero-nombre {
+    padding: 10px 20px;
+    margin-bottom: 8px;
+    clip-path: polygon(0 0, 95% 0, 100% 100%, 0% 100%);
+}
+
+.nombre-personaje {
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   12. CONFIGURACIÓN EXCLUSIVA DE CONTENEDOR Y DIFUMINADOS CORREGIDOS
+   ========================================================================== */
+.tema-claire .letrero-nombre { 
+    background-color: #ff0000; 
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); 
+}
+.tema-claire .glitch-flicker { 
+    animation: flicker-rojo 4s infinite alternate; 
+}
+
+.tema-leon .letrero-nombre { 
+    background-color: #0055ff; 
+    box-shadow: 0 0 20px rgba(0, 85, 255, 0.4); 
+}
+.tema-leon .glitch-flicker { 
+    animation: flicker-azul 4s infinite alternate; 
+}
+
+.tema-g .letrero-nombre { 
+    background-color: #ff5500; 
+    box-shadow: 0 0 20px rgba(255, 85, 0, 0.4); 
+}
+.tema-g .glitch-flicker { 
+    animation: flicker-naranja 4s infinite alternate; 
+}
+
+/* @KEYFRAMES DE DIFUMINADO INDEPENDIENTE (¡RESUELVE EL ERROR ROJO EN LEON!) */
+@keyframes flicker-rojo {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 2px 2px 4px #660000, 0 0 10px #800000, 0 0 20px #4d0000;
+        opacity: 1;
+    }
+    20%, 24%, 55% { text-shadow: none; opacity: 0.5; }
+}
+
+@keyframes flicker-azul {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 2px 2px 4px #002266, 0 0 10px #003399, 0 0 20px #001a4d;
+        opacity: 1;
+    }
+    20%, 24%, 55% { text-shadow: none; opacity: 0.5; }
+}
+
+@keyframes flicker-naranja {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow: 2px 2px 4px #662200, 0 0 10px #993300, 0 0 20px #4d1a00;
+        opacity: 1;
+    }
+    20%, 24%, 55% { text-shadow: none; opacity: 0.5; }
+}
+
+/* DETALLES ADICIONALES DE EXPEDIENTES */
+.id-registro { font-family: monospace; color: #444; font-size: 0.9rem; margin-bottom: 25px; margin-left: 5px; letter-spacing: 2px; display: inline-block; }
+.tabla-stats { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
+.fila-stat td { padding: 10px 0; font-size: 0.95rem; border-bottom: 1px solid #111; }
+.stat-label { color: #666; font-weight: bold; width: 35%; font-family: 'Oswald', sans-serif; letter-spacing: 1px; }
+.stat-valor { color: #ddd; }
+
+@keyframes alertPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.alert-pulse-rojo { color: #ff0000 !important; font-weight: bold; animation: alertPulse 1.2s infinite; }
+.alert-pulse-azul { color: #0055ff !important; font-weight: bold; animation: alertPulse 1.2s infinite; }
+.alert-pulse-naranja { color: #ff5500 !important; font-weight: bold; animation: alertPulse 0.8s infinite; }
+
+.bio-texto { color: #999; font-size: 0.95rem; line-height: 1.7; margin: 0 0 35px 0; }
+
+.btn-cerrar-expediente { background: #0d0d0d; color: #666; padding: 14px 28px; font-family: 'Oswald', sans-serif; font-weight: bold; font-size: 1rem; cursor: pointer; letter-spacing: 1.5px; border: 1px solid #222; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); align-self: flex-start; }
+.btn-cerrar-claire:hover { color: #fff; background: #ff0000; border-color: #ff0000; box-shadow: 0 0 20px #ff0000; transform: translateY(-3px); }
+.btn-cerrar-leon:hover { color: #fff; background: #0055ff; border-color: #0055ff; box-shadow: 0 0 20px #0055ff; transform: translateY(-3px); }
+.btn-cerrar-g:hover { color: #fff; background: #ff5500; border-color: #ff5500; box-shadow: 0 0 20px #ff5500; transform: translateY(-3px); }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 968px) {
+    .grid-historia { grid-template-columns: 1fr; gap: 40px; }
+    .grid-personajes { grid-template-columns: 1fr; gap: 40px; }
+    .titulo-principal { font-size: 3rem; }
+    .header-contenedor { flex-direction: column; gap: 15px; }
+    .footer-contenido { flex-direction: column; gap: 15px; text-align: center; }
+}
+
+@media (max-width: 720px) {
+    .expediente-card { flex-direction: column; }
+    .foto-perfil { width: 100%; aspect-ratio: 4 / 3; }
+    .datos-tecnicos { width: 100%; padding: 30px 20px; }
+    .nombre-personaje { font-size: 1.8rem; }
+    .letrero-nombre { clip-path: none; text-align: center; }
+}
+/* ==========================================
+   1. VARIABLES Y CONFIGURACIÓN GENERAL
+   ========================================== */
+:root {
+    --rojo-oscuro: #8b0000;
+    --rojo-neon: #ff0000;
+    --negro-puro: #0a0a0a;
+    --gris-oscuro: #111111;
+    --gris-texto: #cccccc;
+    --blanco-sucio: #e5e5e5;
+    --fuente-interfaz: 'Orbitron', sans-serif;
+    --fuente-documento: 'Special Elite', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--negro-puro);
+    color: var(--gris-texto);
+    font-family: var(--fuente-interfaz);
+    overflow-x: hidden;
+}
+
+/* Base específica para la página de historia */
+.body-historia {
+    background-image: radial-gradient(circle, #220000 0%, #0a0a0a 100%);
+}
+
+/* ==========================================
+   2. HEADER Y NAVEGACIÓN COMPARTIDA
+   ========================================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 2px solid var(--rojo-oscuro);
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.8);
+}
+
+.header-contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 0 5px var(--rojo-neon));
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-enlace {
+    color: var(--blanco-sucio);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.nav-enlace:hover {
+    color: var(--rojo-neon);
+}
+
+.btn-rojo-nav {
+    background: var(--rojo-oscuro);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px solid var(--rojo-neon);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-rojo-nav:hover {
+    background: var(--rojo-neon);
+    box-shadow: 0 0 20px var(--rojo-neon);
+    transform: scale(1.05);
+}
+
+/* ==========================================
+   3. SECCIÓN HISTORIA DETALLADA (INFORME)
+   ========================================== */
+.historia-detallada {
+    padding: 140px 20px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.informe-top-secret {
+    position: relative; /* Fija el contenedor de referencia para el sello absoluto */
+    background: var(--gris-oscuro);
+    padding: 50px 40px;
+    border-left: 6px solid var(--rojo-oscuro);
+    border-right: 1px solid #222;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    overflow: hidden; /* Corta el exceso de la imagen si se sale */
+}
+
+/* Sello de agua translúcido */
+.sello-umbrella {
+    position: absolute;
+    right: -5%;
+    bottom: -5%;
+    width: 300px;
+    height: auto;
+    opacity: 0.04; /* Muy sutil para garantizar la legibilidad del texto */
+    pointer-events: none;
+    filter: grayscale(1);
+}
+
+.cabecera-informe {
+    border-bottom: 2px dashed #333;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.clasificacion {
+    font-size: 0.8rem;
+    color: var(--rojo-neon);
+    letter-spacing: 3px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.titulo-seccion-historia {
+    font-size: 2rem;
+    color: #fff;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Tipografía de máquina de escribir para el cuerpo del informe */
+.cuerpo-informe {
+    font-family: var(--fuente-documento);
+    color: #d1d1d1;
+    font-size: 1.1rem;
+    line-height: 1.9;
+}
+
+.cuerpo-informe p {
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+/* Letra capital estilizada */
+.dropcap {
+    font-family: var(--fuente-interfaz);
+    font-size: 3.5rem;
+    color: var(--rojo-neon);
+    float: left;
+    margin-right: 15px;
+    line-height: 0.85;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.estado-ciudad {
+    background: rgba(139, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.estado-ciudad strong {
+    color: var(--rojo-neon);
+    display: block;
+    font-family: var(--fuente-interfaz);
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+/* Animación de parpadeo */
+.parpadeo-alerta {
+    animation: alertaPulse 2s infinite;
+}
+
+@keyframes alertaPulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+/* Botón de retorno seguro */
+.btn-volver {
+    display: inline-block;
+    margin-top: 50px;
+    color: var(--rojo-oscuro);
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+    color: var(--rojo-neon);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+    transform: translateX(-5px);
+}
+
+/* ==========================================
+   4. FOOTER GENERAL
+   ========================================== */
+.footer {
+    background: var(--negro-puro);
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid #1a1a1a;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #555;
+}
+
+/* ==========================================
+   5. DISEÑO RESPONSIVO (MÓVILES)
+   ========================================== */
+@media (max-width: 768px) {
+    .header-contenedor {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav ul {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .historia-detallada {
+        padding: 180px 15px 40px;
+    }
+
+    .informe-top-secret {
+        padding: 30px 20px;
+    }
+
+    .titulo-seccion-historia {
+        font-size: 1.5rem;
+    }
+
+    .cuerpo-informe {
+        font-size: 1rem;
+    }
+}
